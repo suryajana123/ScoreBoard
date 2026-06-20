@@ -18,6 +18,25 @@
 
 <button onclick="addStudent()">
     Add Student
+    <!-- Purana Add Student (jaise hai rakho) -->
+<input type="text" id="newStudent" placeholder="Enter Student Name">
+<button onclick="addStudent()">Add Student</button>
+
+<!-- ===================== NEW ANIME AVATAR FEATURE ===================== -->
+<h3>🎨 Add Student with Anime Picture</h3>
+
+<input type="text" id="animePrefix" placeholder="Naruto / Goku etc. (optional)" style="width:90%; padding:10px; margin:5px 0;">
+
+<input type="text" id="animeRealName" placeholder="Student Real Name" style="width:90%; padding:10px; margin:5px 0;">
+
+<label>Anime Image URL (Online):</label><br>
+<input type="text" id="animeImageUrl" placeholder="https://example.com/naruto.jpg" style="width:90%; padding:10px; margin:5px 0;">
+
+<button onclick="addAnimeStudentWithImage()">Add with Anime Picture</button>
+
+<p><small>Ya apni computer se image upload karne ke liye neeche button</small></p>
+<input type="file" id="imageUpload" accept="image/*">
+<button onclick="uploadImageAndAdd()">Upload Image + Add Student</button>
 </button>
 
 <hr>
