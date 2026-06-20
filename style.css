@@ -112,3 +112,100 @@ h1,h2,h3{
         font-size:32px;
     }
 }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 520px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(20, 20, 40, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 255, 200, 0.4),
+                inset 0 0 20px rgba(255, 0, 150, 0.2);
+    border: 3px solid #00ffcc;
+    position: relative;
+}
+
+.title {
+    text-align: center;
+    font-size: 28px;
+    text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #00ffcc;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+input, select {
+    width: 90%;
+    padding: 14px;
+    margin: 12px 0;
+    background: #1a1a2e;
+    border: 2px solid #00ffcc;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+}
+
+button {
+    background: linear-gradient(45deg, #ff00cc, #00ffff);
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 8px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+button:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 0 25px #00ffff;
+}
+
+.score {
+    font-size: 52px;
+    font-weight: bold;
+    color: #00ff88;
+    text-shadow: 0 0 20px #00ff88;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(0,0,0,0.5);
+}
+
+th, td {
+    padding: 14px;
+    border: 2px solid #00ffcc;
+    text-align: center;
+}
+
+th {
+    background: #1a0033;
+    color: #ff00ff;
+}
+
+/* Extra Anime Flair */
+.student-card {
+    background: linear-gradient(145deg, #1e0033, #330033);
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+}
