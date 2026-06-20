@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Student Dashboard</h1>
+
+    <button class="logout" onclick="logout()">Logout</button>
+
+    <h2 id="studentName"></h2>
+
+    <div class="score" id="studentScore"></div>
+
+    <h2 id="studentRank"></h2>
+
+    <h2>Leaderboard</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+
+        <tbody id="leaderboard"></tbody>
+    </table>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+let currentStudent = localStorage.getItem("currentStudent");
+
+let students = getStudents();
+
+students.sort((a,b)=> b.score - a.score);
+
+let board = document.getElementById("leaderboard");
+
+students.forEach((student,index)=>{
+
+    board.innerHTML += `
+        <tr>
+            <td>${index+1}</td>
+            <td>${student.name}</td>
+            <td>${student.score}</td>
+        </tr>
+    `;
+
+    if(student.name === currentStudent){
+
+        document.getElementById("studentName").innerText =
+            student.name;
+
+        document.getElementById("studentScore").innerText =
+            student.score;
+
+        document.getElementById("studentRank").innerText =
+            "Rank #" + (index+1);
+    }
+});
+
+</script>
+
+</body>
+</html>

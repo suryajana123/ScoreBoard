@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Admin Dashboard</h1>
+    <h2>Add New Student</h2>
+
+<input
+    type="text"
+    id="newStudent"
+    placeholder="Enter Student Name">
+
+<button onclick="addStudent()">
+    Add Student
+</button>
+
+<hr>
+
+    <button class="logout" onclick="logout()">Logout</button>
+
+    <div id="students"></div>
+
+    <h2>Leaderboard</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboard"></tbody>
+    </table>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+let students = getStudents();
+
+let studentBox = document.getElementById("students");
+
+students.forEach(student => {
+
+    studentBox.innerHTML += `
+        <div style="margin:20px;">
+            <h3>${student.name}</h3>
+            <div class="score">${student.score}</div>
+
+            <input
+    type="number"
+    id="input_${student.name}"
+    placeholder="Enter Score">
+
+<button onclick="customScore('${student.name}')">
+    Add Score
+</button>
+
+<button onclick="resetScore('${student.name}')">
+    Reset
+</button>
+
+<button onclick="removeStudent('${student.name}')">
+    Remove Student
+</button>
+        </div>
+    `;
+});
+
+// Leaderboard
+
+students.sort((a,b)=> b.score - a.score);
+
+let board = document.getElementById("leaderboard");
+
+students.forEach((student,index)=>{
+
+    board.innerHTML += `
+        <tr>
+            <td>${index+1}</td>
+            <td>${student.name}</td>
+            <td>${student.score}</td>
+        </tr>
+    `;
+});
+</script>
+
+</body>
+</html>studentBox.innerHTML += `
+<div class="student-card">
+...
+</div>
+`;
