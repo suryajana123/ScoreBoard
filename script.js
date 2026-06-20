@@ -38,7 +38,15 @@ function studentLogin() {
 function getStudents() {
     return JSON.parse(localStorage.getItem("students"));
 }
-
+// Students ko image support ke saath
+function getStudents() {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    // Purane students mein image nahi hai to default anime image daal do
+    students.forEach(s => {
+        if (!s.image) s.image = "https://via.placeholder.com/50?text=Anime";
+    });
+    return students;
+}
 // Save Students
 
 function saveStudents(data) {
@@ -185,4 +193,103 @@ function removeStudent(name) {
     saveStudents(students);
 
     location.reload();
+}
+// Default Data (Anime touch)
+if (!localStorage.getItem("students")) {
+    const students = [
+        { name: "Naruto - Surya", score: 0 },
+        { name: "Sasuke - Kamsahi", score: 0 },
+        { name: "Goku - Rani", score: 0 }
+    ];
+    localStorage.setItem("students", JSON.stringify(students));
+}
+// ===================== NEW FUNCTION - ANIME STUDENT ADD =====================
+function addAnimeStudent() {
+    let prefix = document.getElementById("animePrefix").value.trim();
+    let realName = document.getElementById("animeRealName").value.trim();
+
+    if (realName === "") {
+        alert("Student ka real naam to daal do!");
+        return;
+    }
+
+    let fullName = prefix ? `${prefix} - ${realName}` : realName;
+
+    let students = getStudents();
+
+    let exists = students.some(student => 
+        student.name.toLowerCase() === fullName.toLowerCase()
+    );
+
+    if (exists) {
+        alert("Yeh naam pehle se hai!");
+        return;
+    }
+
+    students.push({
+        name: fullName,
+        score: 0
+    });
+
+    saveStudents(students);
+    alert(fullName + " added successfully! 🔥");
+    location.reload();
+}
+// Students ko image support ke saath
+function getStudents() {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    // Purane students mein image nahi hai to default anime image daal do
+    students.forEach(s => {
+        if (!s.image) s.image = "https://via.placeholder.com/50?text=Anime";
+    });
+    return students;
+}
+function addAnimeStudentWithImage() {
+    let prefix = document.getElementById("animePrefix").value.trim();
+    let realName = document.getElementById("animeRealName").value.trim();
+    let imageUrl = document.getElementById("animeImageUrl").value.trim();
+
+    if (realName === "") {
+        alert("Student ka naam daal do!");
+        return;
+    }
+
+    let fullName = prefix ? `${prefix} - ${realName}` : realName;
+    let image = imageUrl || "https://via.placeholder.com/60?text=🧑‍🚀";
+
+    let students = getStudents();
+
+    if (students.some(s => s.name.toLowerCase() === fullName.toLowerCase())) {
+        alert("Yeh naam pehle se hai!");
+        return;
+    }
+
+    students.push({ name: fullName, score: 0, image: image });
+    saveStudents(students);
+    alert(fullName + " with Anime Picture added! 🔥");
+    location.reload();
+}
+function uploadImageAndAdd() {
+    let fileInput = document.getElementById("imageUpload");
+    let prefix = document.getElementById("animePrefix").value.trim();
+    let realName = document.getElementById("animeRealName").value.trim();
+
+    if (!fileInput.files[0] || realName === "") {
+        alert("Image aur Student Name dono chahiye!");
+        return;
+    }
+
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        let base64Image = e.target.result;   // Image base64 mein save hogi
+
+        let fullName = prefix ? `${prefix} - ${realName}` : realName;
+
+        let students = getStudents();
+        students.push({ name: fullName, score: 0, image: base64Image });
+        saveStudents(students);
+        alert(fullName + " with Custom Image added! 🔥");
+        location.reload();
+    };
+    reader.readAsDataURL(fileInput.files[0]);
 }
