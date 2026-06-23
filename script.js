@@ -16,7 +16,7 @@ function adminLogin() {
     let user = document.getElementById("adminUser").value;
     let pass = document.getElementById("adminPass").value;
 
-    if (user === "Surya" && pass === "Surya1234") {
+    if (user === "Surya" && pass === "likho password") {
         window.location.href = "admin.html";
     } else {
         alert("Wrong Username or Password");
